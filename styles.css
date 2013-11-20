@@ -1,0 +1,6 @@
+
+a#sfo-store,
+table#sfo-data a { cursor:pointer; background-color:#efefef; display:inline-block; border:1px solid #ccc; padding:0.15em }
+table#sfo-data tr.editing td { background-color:orange }
+table#sfo-data tr.deleting td { background-color:pink; color:red }
+table#sfo-data tr.uploading td { background-color:green }
