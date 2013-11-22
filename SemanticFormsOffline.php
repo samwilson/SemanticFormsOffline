@@ -23,7 +23,7 @@ $wgSpecialPageGroups['SemanticFormsOffline'] = 'sf_group';
 // Manifest attribute
 $wgHooks['OutputPageHtmlAttributes'][] = 'SemanticFormsOffline_HtmlAttrs';
 function SemanticFormsOffline_HtmlAttrs($outputPage, $skin, &$htmlAttrs) {
-	//$htmlAttrs['manifest'] = Title::newFromText('Special:OfflineFormsManifest')->getLocalURL();
+	$htmlAttrs['manifest'] = Title::newFromText('Special:OfflineFormsManifest')->getLocalURL();
 	return true;
 }
 
@@ -48,10 +48,14 @@ function SemanticFormsOffline_sfHTMLBeforeForm($targetTitle, &$pre_form_html) {
 	global $wgOut;
 	$hasTitle = $targetTitle && $targetTitle->exists();
 	if (!isset($_POST['wpSave']) && !$hasTitle) {
-//		$pre_form_html .= '<fieldset class="sfo">'
-//				. '<legend>Go offline</legend>'
-//				. '<input type="checkbox" />Go offline'
-//				. '</fieldset>';
+		$pre_form_html .= '<fieldset class="SemanticFormsOffline">'
+				. '<legend>Offline Forms</legend>'
+				. '<p>'
+				. '  <span class="message">You are online.</span>'
+				. '  <span class="counter">0</span> items stored.'
+				. '  <a class="button mw-ui-button mw-ui-primary">Go offline.</a>'
+				. '</p>'
+				. '</fieldset>';
 		$wgOut->addModules('ext.SemanticFormsOffline');
 	}
 	return true;

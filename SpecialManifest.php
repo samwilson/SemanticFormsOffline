@@ -28,7 +28,10 @@ class SpecialSemanticFormsOfflineManifest extends UnlistedSpecialPage {
 		// All the forms, and the form index page:
 		echo Title::newFromText('Special:OfflineForms')->getLocalURL()."\n";
 		foreach (SemanticFormsOffline_Utils::allForms(TRUE) as $form) {
-			echo Title::newFromText('Special:FormEdit/'.$form['title'])->getLocalURL()."\n";;
+			$url = Title::newFromText('Special:FormEdit/'.$form['title'])->getLocalURL();
+			$page = new WikiPage(Title::newFromText('Form:'.$form['title']));
+			$mod = $page->getTimestamp();
+			echo "$url # Modified $mod\n";
 		}
 
 		echo "\nNETWORK:\n*\n";
